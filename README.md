@@ -1,5 +1,7 @@
 # Robot Factory
 
+[![Stories in Ready](https://badge.waffle.io/tundranetwork/robotfactory.svg?label=ready&title=Ready)](http://waffle.io/tundranetwork/robotfactory)
+
 ## License
 Licensed under either of
  * Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
