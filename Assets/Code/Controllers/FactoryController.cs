@@ -21,11 +21,6 @@ namespace RobotFactory.Controllers
             _factory.TilesChanged += OnTilesChanged;
         }
 
-        private void OnTilesChanged(object sender, EventArgs e)
-        {
-            _viewOutdated = true;
-        }
-
         private void Update()
         {
             if (_viewOutdated)
@@ -34,6 +29,11 @@ namespace RobotFactory.Controllers
                 GenerateView();
                 _viewOutdated = false;
             }
+        }
+
+        private void OnTilesChanged(object sender, EventArgs e)
+        {
+            _viewOutdated = true;
         }
 
         private void ClearView()
