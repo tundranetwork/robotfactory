@@ -99,7 +99,7 @@ GameObject:
   - 4: {fileID: 403970805}
   - 114: {fileID: 403970806}
   m_Layer: 0
-  m_Name: FactoryController
+  m_Name: FactoryView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,8 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194d84a51d9a54ffeb7fc47a911d909f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorMesh: {fileID: 4300000, guid: 9ef018b94086f49fbbe7dbaa585f524e, type: 3}
   _grassMesh: {fileID: 4300000, guid: 179a135d4c1374a5cb1f9a8597fbf921, type: 3}
+  _floorMesh: {fileID: 4300000, guid: 9ef018b94086f49fbbe7dbaa585f524e, type: 3}
+  _wallMesh: {fileID: 4300000, guid: fbfb392dbd3c4449f8a47cc76b569e19, type: 3}
   _material: {fileID: 2100000, guid: 8ebb0c09a21774e55ad11fb80ad3280b, type: 2}
 --- !u!1001 &896903691
 Prefab:

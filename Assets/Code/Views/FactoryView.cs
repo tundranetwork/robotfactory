@@ -5,10 +5,11 @@ using RobotFactory.Model;
 
 namespace RobotFactory.Controllers
 {
-    public class FactoryController : MonoBehaviour
+    public class FactoryView : MonoBehaviour
     {
-        [SerializeField] private Mesh _floorMesh;
         [SerializeField] private Mesh _grassMesh;
+        [SerializeField] private Mesh _floorMesh;
+        [SerializeField] private Mesh _wallMesh;
         [SerializeField] private Material _material;
 
         private Factory _factory;
@@ -64,7 +65,18 @@ namespace RobotFactory.Controllers
 
                     // Set the mesh data
                     var meshFilter = tileGo.AddComponent<MeshFilter>();
-                    meshFilter.sharedMesh = tile.Type == TileType.Floor ? _floorMesh : _grassMesh;
+                    switch (tile.Type) // TODO: Load these in dynamically
+                    {
+                        case TileType.Grass:
+                            meshFilter.sharedMesh = _grassMesh;
+                            break;
+                        case TileType.Floor:
+                            meshFilter.sharedMesh = _floorMesh;
+                            break;
+                        case TileType.Wall:
+                            meshFilter.sharedMesh = _wallMesh;
+                            break;
+                    }
                     var meshRenderer = tileGo.AddComponent<MeshRenderer>();
                     meshRenderer.material = _material;
                 }
