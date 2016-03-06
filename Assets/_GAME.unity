@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 953032519}
   - 108: {fileID: 953032518}
+  - 114: {fileID: 953032520}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -239,6 +240,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &953032520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 953032517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e742713726c4dc984b12fb0c8f8fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightDayColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4284696320
+    key1:
+      serializedVersion: 2
+      rgba: 4285834751
+    key2:
+      serializedVersion: 2
+      rgba: 14087423
+    key3:
+      serializedVersion: 2
+      rgba: 14087423
+    key4:
+      serializedVersion: 2
+      rgba: 6506240
+    key5:
+      serializedVersion: 2
+      rgba: 6506240
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 3277
+    ctime1: 19661
+    ctime2: 29491
+    ctime3: 65535
+    ctime4: 65535
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  maxIntensity: 1
+  minIntensity: 0
+  minPoint: -0.2
+  maxAmbient: 1
+  minAmbient: 0
+  minAmbientPoint: -0.2
+  dayRotateSpeed: {x: -1, y: 0, z: 0}
+  nightRotateSpeed: {x: -3, y: 0, z: 0}
 --- !u!1 &1112822728
 GameObject:
   m_ObjectHideFlags: 0
