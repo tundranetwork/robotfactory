@@ -6,8 +6,8 @@ namespace RobotFactory.Model
 {
     public class Factory
     {
-        private Tile[,] _tiles;
-        private int _width, _height;
+        private readonly Tile[,] _tiles;
+        private readonly int _width, _height;
 
         public Factory(int width, int height)
         {
@@ -43,25 +43,35 @@ namespace RobotFactory.Model
             get { return _height; }
         }
 
-        public event EventHandler TilesChanged;
+        public event EventHandler<TileChangedEventArgs> TileChanged;
 
-        public Tile GetTileAt(int x, int y)
+        public Tile GetTileAt(Vector2I pos)
         {
-            return _tiles[x, y];
+            return _tiles[pos.x, pos.y];
         }
 
-        public void SetTileAt(int x, int y, Tile tile)
+        public void SetTileAt(Vector2I pos, Tile tile)
         {
-            if (x > _width || y > _height)
+            if (pos.x > _width || pos.y > _height)
             {
                 throw new IndexOutOfRangeException();
             }
 
             // Actually perform the set
-            _tiles[x, y] = tile;
+            _tiles[pos.x, pos.y] = tile;
 
             // Notify listeners of the change
-            TilesChanged.SafeInvoke(this, EventArgs.Empty);
+            TileChanged.SafeInvoke(this, new TileChangedEventArgs(pos));
+        }
+    }
+
+    public class TileChangedEventArgs : EventArgs
+    {
+        public Vector2I Position { get; private set; }
+
+        public TileChangedEventArgs(Vector2I pos)
+        {
+            Position = pos;
         }
     }
 }

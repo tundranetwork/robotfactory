@@ -1,4 +1,5 @@
 ﻿using System;
+using RobotFactory.Model;
 using UnityEngine;
 
 namespace RobotFactory.Controllers
@@ -8,7 +9,18 @@ namespace RobotFactory.Controllers
         [SerializeField] private Camera _targetCamera;
         [SerializeField] private GameObject _tileSelector;
 
+        private Factory _factory;
         private Vector3 _dragStartPos;
+
+        private void Start()
+        {
+            FindObjectOfType<ModelManager>().Link(OnReadyToLink);
+        }
+
+        private void OnReadyToLink(ModelManager manager)
+        {
+            _factory = manager.Require<Factory>();
+        }
 
         private void Update()
         {
@@ -46,6 +58,12 @@ namespace RobotFactory.Controllers
             {
                 // We're not dragging currently, so store the position for when we are
                 _dragStartPos = currentPos;
+            }
+
+            if (Input.GetButtonUp("Place Tile"))
+            {
+                var tile = new Tile {Type = TileType.Wall};
+                _factory.SetTileAt(Vector2I.FloorFrom(currentPos), tile);
             }
         }
 

@@ -11,5 +11,13 @@ namespace RobotFactory
                 evt.Invoke(sender, args);
             }
         }
+
+        public static void SafeInvoke<T>(this EventHandler<T> evt, object sender, T args) where T : EventArgs
+        {
+            if (evt != null)
+            {
+                evt.Invoke(sender, args);
+            }
+        }
     }
 }
