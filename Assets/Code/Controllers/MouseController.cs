@@ -1,13 +1,26 @@
 ﻿using System;
+using RobotFactory.Model;
 using UnityEngine;
 
 namespace RobotFactory.Controllers
 {
     public class MouseController : MonoBehaviour
     {
-        [SerializeField] Camera _targetCamera;
+        [SerializeField] private Camera _targetCamera;
+        [SerializeField] private GameObject _tileSelector;
 
+        private Factory _factory;
         private Vector3 _dragStartPos;
+
+        private void Start()
+        {
+            FindObjectOfType<ModelManager>().Link(OnReadyToLink);
+        }
+
+        private void OnReadyToLink(ModelManager manager)
+        {
+            _factory = manager.Require<Factory>();
+        }
 
         private void Update()
         {
@@ -27,6 +40,7 @@ namespace RobotFactory.Controllers
 
             UpdateDrag(currentPos);
             UpdateZoom();
+            UpdateCursor(currentPos);
         }
 
         private void UpdateDrag(Vector3 currentPos)
@@ -45,6 +59,12 @@ namespace RobotFactory.Controllers
                 // We're not dragging currently, so store the position for when we are
                 _dragStartPos = currentPos;
             }
+
+            if (Input.GetButtonUp("Place Tile"))
+            {
+                var tile = new Tile {Type = TileType.Wall};
+                _factory.SetTileAt(Vector2I.FloorFrom(currentPos), tile);
+            }
         }
 
         private void UpdateZoom()
@@ -54,6 +74,14 @@ namespace RobotFactory.Controllers
             zoom = Math.Max(zoom, 4.0f);
             zoom = Math.Min(zoom, 10.0f);
             _targetCamera.orthographicSize = zoom;
+        }
+
+        private void UpdateCursor(Vector3 currentPos)
+        {
+            currentPos.x = Mathf.Floor(currentPos.x);
+            currentPos.y = 0.0f;
+            currentPos.z = Mathf.Floor(currentPos.z);
+            _tileSelector.transform.position = currentPos;
         }
     }
 }
